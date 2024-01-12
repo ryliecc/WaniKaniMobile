@@ -21,7 +21,7 @@ These instructions will help you set up the project on your local machine for de
 
 1. Clone the repository:
 
-```git clone https://github.com/yourusername/wanikani-react-native.git```
+```git clone https://github.com/ryliecc/WaniKaniMobile.git```
 
 2. Install dependencies:
 
@@ -29,7 +29,7 @@ These instructions will help you set up the project on your local machine for de
 
 3. Run the application:
 
-```npx react-native run-android``` or ```npx react-native run-ios```
+```npm run android``` or ```npm run ios```
 
 ## Features
 

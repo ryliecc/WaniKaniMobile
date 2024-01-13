@@ -5,10 +5,7 @@ export default function SettingsScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Settings Screen</Text>
-      <Button
-        title="Go to Dashboard"
-        onPress={() => navigation.navigate("Home")}
-      />
+      <Button title="Go back" onPress={() => navigation.goBack()} />
       <StatusBar style="auto" />
     </View>
   );

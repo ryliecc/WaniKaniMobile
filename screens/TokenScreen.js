@@ -1,21 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 import { useState } from "react";
-import RNSecureStorage, { ACCESSIBLE } from "rn-secure-storage";
 
 export default function TokenScreen({ navigation }) {
   const [text, setText] = useState("");
 
   function saveToken() {
-    RNSecureStorage.setItem("api_token", text, {
-      accessible: ACCESSIBLE.ALWAYS,
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     navigation.goBack();
   }
   return (

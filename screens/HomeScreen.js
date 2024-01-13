@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
-      <Text>
+      <Text style={styles.text}>
         Welcome to the WaniKani Mobile App. It is still work in progress, but
         have a look around if you want to. 😉
       </Text>
@@ -19,5 +19,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
   },
 });

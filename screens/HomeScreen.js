@@ -9,6 +9,10 @@ export default function HomeScreen({ navigation }) {
         have a look around if you want to. 😉
       </Text>
       <Button
+        title="Enter API Token"
+        onPress={() => navigation.navigate("API Token")}
+      />
+      <Button
         title="Go to Settings"
         onPress={() => navigation.navigate("Settings")}
       />

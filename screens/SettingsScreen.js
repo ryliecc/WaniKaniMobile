@@ -1,16 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button } from "react-native";
 
-export default function HomeScreen({ navigation }) {
+export default function SettingsScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        Welcome to the WaniKani Mobile App. It is still work in progress, but
-        have a look around if you want to. 😉
-      </Text>
+      <Text style={styles.text}>Settings Screen</Text>
       <Button
-        title="Go to Settings"
-        onPress={() => navigation.navigate("Settings")}
+        title="Go to Dashboard"
+        onPress={() => navigation.navigate("Home")}
       />
       <StatusBar style="auto" />
     </View>

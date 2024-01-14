@@ -8,7 +8,6 @@ const storage = new MMKVLoader().initialize();
 export default function HomeScreen({ navigation }) {
   const [token, setToken] = useMMKVStorage("api_token", storage, "");
   const [userData, setUserData] = useMMKVStorage("user_data", storage, null);
-  const [username, setUsername] = useState("unknown user");
   const [isTokenValid, setIsTokenValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,11 +34,9 @@ export default function HomeScreen({ navigation }) {
         if (response.status === 401) {
           setIsTokenValid(false);
           setUserData(null);
-          setUsername("unknown user");
         } else {
           setIsTokenValid(true);
           setUserData(responseBody.data);
-          setUsername(responseBody.data.username);
         }
 
         setIsLoading(false);
@@ -57,7 +54,9 @@ export default function HomeScreen({ navigation }) {
         {isLoading ? "Trying to fetch data..." : ""}
       </Text>
       <Text style={styles.text}>
-        {isTokenValid ? "Hello " + username + "!" : "No valid API token!"}
+        {isTokenValid
+          ? "Hello " + userData?.username + "!"
+          : "No valid API token!"}
       </Text>
       <Text style={styles.text}>
         Welcome to the WaniKani Mobile App. It is still work in progress, but
@@ -100,7 +99,6 @@ const styles = StyleSheet.create({
   },
   notLoading: {
     position: "absolute",
-    color: "transparent",
-    backgroundColor: "transparent",
+    display: "none",
   },
 });

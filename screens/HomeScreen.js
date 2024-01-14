@@ -53,7 +53,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
+      <Text style={isLoading ? styles.loading : styles.notLoading}>
         {isLoading ? "Trying to fetch data..." : ""}
       </Text>
       <Text style={styles.text}>
@@ -87,5 +87,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: "center",
     margin: 10,
+  },
+  loading: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10,
+    position: "absolute",
+    top: -10,
+    backgroundColor: "#696969",
+    width: "100%",
+    height: 35,
+  },
+  notLoading: {
+    position: "absolute",
+    color: "transparent",
+    backgroundColor: "transparent",
   },
 });

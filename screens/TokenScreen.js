@@ -14,7 +14,7 @@ export default function TokenScreen({ navigation }) {
 
   function saveToken() {
     setToken(text);
-    navigation.goBack();
+    navigation.navigate("Home");
   }
   return (
     <View style={styles.container}>

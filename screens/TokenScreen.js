@@ -1,12 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, Button, TextInput } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 
 const storage = new MMKVLoader().initialize();
 export default function TokenScreen({ navigation }) {
   const [text, setText] = useState("");
   const [token, setToken] = useMMKVStorage("api_token", storage, "");
+
+  useEffect(() => {
+    token.length >= 1 ? setText(token) : setText("");
+  }, []);
 
   function saveToken() {
     setToken(text);

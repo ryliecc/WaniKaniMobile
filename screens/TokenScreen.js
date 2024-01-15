@@ -73,6 +73,30 @@ export default function TokenScreen({ navigation }) {
     token.length >= 1 ? setText(token) : setText("");
   }, []);
 
+  function deleteToken() {
+    Alert.alert(
+      "Delete token?",
+      "Are you sure you want to delete this token?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+          onPress: () => console.log("Cancel Pressed"),
+        },
+        {
+          text: "Delete",
+          style: "destructive",
+          onPress: () => {
+            setToken("");
+            setUserData(null);
+            setText("");
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  }
+
   async function saveToken() {
     const apiEndpointPath = "user";
     const requestHeaders = new Headers({
@@ -118,6 +142,7 @@ export default function TokenScreen({ navigation }) {
       {!isInputValid && (
         <Text style={{ color: "red" }}>You entered an invalid character!</Text>
       )}
+      <Button title="Delete token" onPress={deleteToken} />
       <Button title="Done!" onPress={saveToken} />
       <Button title="Go back" onPress={() => navigation.goBack()} />
       <StatusBar style="auto" />

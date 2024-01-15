@@ -64,26 +64,39 @@ export default function HomeScreen({ navigation }) {
           onPress={() => navigation.navigate("Lesson")}
           style={[styles.sessionButton, { backgroundColor: "#ff00aa" }]}
         >
-          <Text style={styles.sessionButtonText}>Lessons</Text>
+          <Text style={styles.buttonText}>Lessons</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("Review")}
           style={[styles.sessionButton, { backgroundColor: "#00aaff" }]}
         >
-          <Text style={styles.sessionButtonText}>Reviews</Text>
+          <Text style={styles.buttonText}>Reviews</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>
         Welcome to the WaniKani Mobile App. It is still work in progress, but
         have a look around if you want to. 😉
       </Text>
-
-      <Button title="Radicals" onPress={() => navigation.navigate("Radical")} />
-      <Button title="Kanji" onPress={() => navigation.navigate("Kanji")} />
-      <Button
-        title="Vocabulary"
-        onPress={() => navigation.navigate("Vocabulary")}
-      />
+      <View style={styles.categoryContainer}>
+        <TouchableOpacity
+          style={[styles.categoryButton, { backgroundColor: "#00aaff" }]}
+          onPress={() => navigation.navigate("Radical")}
+        >
+          <Text style={styles.buttonText}>Radicals</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.categoryButton, { backgroundColor: "#ff00aa" }]}
+          onPress={() => navigation.navigate("Kanji")}
+        >
+          <Text style={styles.buttonText}>Kanji</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.categoryButton, { backgroundColor: "#aa00ff" }]}
+          onPress={() => navigation.navigate("Vocabulary")}
+        >
+          <Text style={styles.buttonText}>Vocabulary</Text>
+        </TouchableOpacity>
+      </View>
       <Button
         title="Go to Settings"
         onPress={() => navigation.navigate("Settings")}
@@ -129,10 +142,21 @@ const styles = StyleSheet.create({
     width: "50%",
     height: 80,
   },
-  sessionButtonText: {
+  buttonText: {
     color: "#fff",
     fontSize: 30,
     textAlign: "center",
     paddingTop: 18,
+  },
+  categoryContainer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 10,
+    alignItems: "center",
+  },
+  categoryButton: {
+    borderRadius: 30,
+    width: 350,
+    height: 80,
   },
 });

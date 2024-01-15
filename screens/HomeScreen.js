@@ -55,7 +55,11 @@ export default function HomeScreen({ navigation }) {
       </Text>
       <Text style={styles.text}>
         {isTokenValid
-          ? "Hello " + userData?.username + "!"
+          ? "Hello " +
+            userData?.username +
+            "! You're currently on level " +
+            userData?.level +
+            "."
           : "No valid API token!"}
       </Text>
       <Text style={styles.text}>

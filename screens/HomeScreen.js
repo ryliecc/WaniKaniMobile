@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  StatusBar,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 import { useState, useEffect } from "react";
 
@@ -69,13 +62,13 @@ export default function HomeScreen({ navigation }) {
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           onPress={() => navigation.navigate("Lesson")}
-          style={(styles.sessionButton, { backgroundColor: "#ff00aa" })}
+          style={[styles.sessionButton, { backgroundColor: "#ff00aa" }]}
         >
           <Text style={styles.sessionButtonText}>Lessons</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("Review")}
-          style={(styles.sessionButton, { backgroundColor: "#00aaff" })}
+          style={[styles.sessionButton, { backgroundColor: "#00aaff" }]}
         >
           <Text style={styles.sessionButtonText}>Reviews</Text>
         </TouchableOpacity>
@@ -95,7 +88,6 @@ export default function HomeScreen({ navigation }) {
         title="Go to Settings"
         onPress={() => navigation.navigate("Settings")}
       />
-      <StatusBar style="auto" />
     </View>
   );
 }
@@ -105,7 +97,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    paddingTop: 70,
   },
   text: {
     fontSize: 20,
@@ -126,16 +119,20 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    gap: 5,
+    gap: 40,
+    padding: 30,
+    paddingTop: 10,
   },
   sessionButton: {
-    borderRadius: 20,
-    boxShadow:
-      "inset 0 -3px 1px rgba(0,0,0,0.2),inset 0 3px 1px rgba(0,0,0,0);",
+    borderRadius: 30,
+    border: "none",
+    width: "50%",
+    height: 80,
   },
   sessionButtonText: {
     color: "#fff",
     fontSize: 30,
-    margin: 10,
+    textAlign: "center",
+    paddingTop: 18,
   },
 });

@@ -18,7 +18,7 @@ export default function App() {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={{ title: "Dashboard" }}
+          options={{ title: "Dashboard", headerShown: false }}
         />
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="API Token" component={TokenScreen} />

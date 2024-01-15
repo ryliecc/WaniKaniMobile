@@ -1,5 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  StatusBar,
+  TouchableOpacity,
+} from "react-native";
 import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 import { useState, useEffect } from "react";
 
@@ -50,9 +56,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={isLoading ? styles.loading : styles.notLoading}>
-        {isLoading ? "Trying to fetch data..." : ""}
-      </Text>
+      {isLoading && <Text style={styles.loading}>Trying to fetch data...</Text>}
       <Text style={styles.text}>
         {isTokenValid
           ? "Hello " +
@@ -62,12 +66,25 @@ export default function HomeScreen({ navigation }) {
             "."
           : "No valid API token!"}
       </Text>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Lesson")}
+          style={(styles.sessionButton, { backgroundColor: "#ff00aa" })}
+        >
+          <Text style={styles.sessionButtonText}>Lessons</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Review")}
+          style={(styles.sessionButton, { backgroundColor: "#00aaff" })}
+        >
+          <Text style={styles.sessionButtonText}>Reviews</Text>
+        </TouchableOpacity>
+      </View>
       <Text style={styles.text}>
         Welcome to the WaniKani Mobile App. It is still work in progress, but
         have a look around if you want to. 😉
       </Text>
-      <Button title="Lessons" onPress={() => navigation.navigate("Lesson")} />
-      <Button title="Reviews" onPress={() => navigation.navigate("Review")} />
+
       <Button title="Radicals" onPress={() => navigation.navigate("Radical")} />
       <Button title="Kanji" onPress={() => navigation.navigate("Kanji")} />
       <Button
@@ -100,13 +117,25 @@ const styles = StyleSheet.create({
     textAlign: "center",
     margin: 10,
     position: "absolute",
-    top: -10,
     backgroundColor: "#696969",
+    top: -10,
     width: "100%",
     height: 35,
   },
-  notLoading: {
-    position: "absolute",
-    display: "none",
+  buttonContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    gap: 5,
+  },
+  sessionButton: {
+    borderRadius: 20,
+    boxShadow:
+      "inset 0 -3px 1px rgba(0,0,0,0.2),inset 0 3px 1px rgba(0,0,0,0);",
+  },
+  sessionButtonText: {
+    color: "#fff",
+    fontSize: 30,
+    margin: 10,
   },
 });

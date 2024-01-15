@@ -6,6 +6,7 @@ import TokenScreen from "./screens/TokenScreen";
 import LessonScreen from "./screens/LessonScreen";
 import ReviewScreen from "./screens/ReviewScreen";
 import RadicalScreen from "./screens/RadicalScreen";
+import KanjiScreen from "./screens/KanjiScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,7 @@ export default function App() {
         <Stack.Screen name="Lesson" component={LessonScreen} />
         <Stack.Screen name="Review" component={ReviewScreen} />
         <Stack.Screen name="Radical" component={RadicalScreen} />
+        <Stack.Screen name="Kanji" component={KanjiScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

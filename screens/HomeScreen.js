@@ -65,6 +65,7 @@ export default function HomeScreen({ navigation }) {
       <Button title="Lessons" onPress={() => navigation.navigate("Lesson")} />
       <Button title="Reviews" onPress={() => navigation.navigate("Review")} />
       <Button title="Radicals" onPress={() => navigation.navigate("Radical")} />
+      <Button title="Kanji" onPress={() => navigation.navigate("Kanji")} />
       <Button
         title="Go to Settings"
         onPress={() => navigation.navigate("Settings")}

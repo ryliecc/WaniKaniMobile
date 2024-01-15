@@ -62,6 +62,7 @@ export default function HomeScreen({ navigation }) {
         Welcome to the WaniKani Mobile App. It is still work in progress, but
         have a look around if you want to. 😉
       </Text>
+      <Button title="Lessons" onPress={() => navigation.navigate("Lesson")} />
       <Button
         title="Go to Settings"
         onPress={() => navigation.navigate("Settings")}

@@ -4,6 +4,7 @@ import HomeScreen from "./screens/HomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import TokenScreen from "./screens/TokenScreen";
 import LessonScreen from "./screens/LessonScreen";
+import ReviewScreen from "./screens/ReviewScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ export default function App() {
         <Stack.Screen name="Settings" component={SettingsScreen} />
         <Stack.Screen name="API Token" component={TokenScreen} />
         <Stack.Screen name="Lesson" component={LessonScreen} />
+        <Stack.Screen name="Review" component={ReviewScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -24,9 +24,21 @@ export default function App() {
         <Stack.Screen name="API Token" component={TokenScreen} />
         <Stack.Screen name="Lesson" component={LessonScreen} />
         <Stack.Screen name="Review" component={ReviewScreen} />
-        <Stack.Screen name="Radical" component={RadicalScreen} />
-        <Stack.Screen name="Kanji" component={KanjiScreen} />
-        <Stack.Screen name="Vocabulary" component={VocabularyScreen} />
+        <Stack.Screen
+          name="Radical"
+          component={RadicalScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Kanji"
+          component={KanjiScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Vocabulary"
+          component={VocabularyScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

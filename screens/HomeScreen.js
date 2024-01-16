@@ -10,6 +10,9 @@ export default function HomeScreen({ navigation }) {
   const [userData, setUserData] = useMMKVStorage("user_data", storage, null);
   const [isTokenValid, setIsTokenValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("");
+  const [isCategoryLevelOpen, setIsCategoryLevelOpen] = useState(false);
+  const [categoryBackgroundColor, setCategoryBackgroundColor] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,6 +51,25 @@ export default function HomeScreen({ navigation }) {
     fetchData();
   }, [token, navigation]);
 
+  function toggleCategoryLevelContainer(category) {
+    if (category === "Radical") {
+      setCategoryBackgroundColor("#00aaff");
+    }
+    if (category === "Kanji") {
+      setCategoryBackgroundColor("#ff00aa");
+    }
+    if (category === "Vocabulary") {
+      setCategoryBackgroundColor("#aa00ff");
+    }
+    if (category === activeCategory) {
+      setActiveCategory("");
+      setIsCategoryLevelOpen(false);
+    } else {
+      setActiveCategory(category);
+      setIsCategoryLevelOpen(true);
+    }
+  }
+
   return (
     <View style={styles.container}>
       {isLoading && <Text style={styles.loading}>Trying to fetch data...</Text>}
@@ -73,68 +95,79 @@ export default function HomeScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <Text style={styles.categoryTitle}>Overview</Text>
-      <View style={styles.categoryContainer}>
+      <View
+        style={[
+          styles.categoryContainer,
+          { paddingBottom: isCategoryLevelOpen ? 210 : 20 },
+        ]}
+      >
         <TouchableOpacity
           style={[styles.categoryButton, { backgroundColor: "#00aaff" }]}
-          onPress={() => navigation.navigate("Radical")}
+          onPress={() => toggleCategoryLevelContainer("Radical")}
         >
           <Text style={styles.categoryJapaneseText}>部首</Text>
           <Text style={styles.categoryEnglishText}>Radicals</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.categoryButton, { backgroundColor: "#ff00aa" }]}
-          onPress={() => navigation.navigate("Kanji")}
+          onPress={() => toggleCategoryLevelContainer("Kanji")}
         >
           <Text style={styles.categoryJapaneseText}>漢字</Text>
           <Text style={styles.categoryEnglishText}>Kanji</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.categoryButton, { backgroundColor: "#aa00ff" }]}
-          onPress={() => navigation.navigate("Vocabulary")}
+          onPress={() => toggleCategoryLevelContainer("Vocabulary")}
         >
           <Text style={styles.categoryJapaneseText}>単語</Text>
           <Text style={styles.categoryEnglishText}>Vocabulary</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.categoryLevelContainer}>
+      <View
+        style={[
+          styles.categoryLevelContainer,
+          { display: isCategoryLevelOpen ? "flex" : "none" },
+          { backgroundColor: categoryBackgroundColor },
+        ]}
+      >
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate("Radicals")}
+          onPress={() => navigation.navigate(activeCategory)}
         >
           <Text style={styles.categoryLevelJapaneseText}>快</Text>
           <Text style={styles.categoryLevelEnglishText}>Pleasant</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate("Radicals")}
+          onPress={() => navigation.navigate(activeCategory)}
         >
           <Text style={styles.categoryLevelJapaneseText}>苦</Text>
           <Text style={styles.categoryLevelEnglishText}>Painful</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate("Radicals")}
+          onPress={() => navigation.navigate(activeCategory)}
         >
           <Text style={styles.categoryLevelJapaneseText}>死</Text>
           <Text style={styles.categoryLevelEnglishText}>Death</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate("Radicals")}
+          onPress={() => navigation.navigate(activeCategory)}
         >
           <Text style={styles.categoryLevelJapaneseText}>地獄</Text>
           <Text style={styles.categoryLevelEnglishText}>Hell</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate("Radicals")}
+          onPress={() => navigation.navigate(activeCategory)}
         >
           <Text style={styles.categoryLevelJapaneseText}>天国</Text>
           <Text style={styles.categoryLevelEnglishText}>Paradise</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate("Radicals")}
+          onPress={() => navigation.navigate(activeCategory)}
         >
           <Text style={styles.categoryLevelJapaneseText}>現実</Text>
           <Text style={styles.categoryLevelEnglishText}>Reality</Text>
@@ -231,7 +264,6 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: 10,
     paddingTop: 80,
-    paddingBottom: 20,
     alignItems: "center",
     backgroundColor: "#d5d5d5",
     margin: 30,
@@ -263,16 +295,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   categoryLevelContainer: {
-    display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 10,
     width: 340,
     padding: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
     alignItems: "center",
-    backgroundColor: "#00aaff",
     justifyContent: "space-evenly",
     borderRadius: 20,
+    position: "absolute",
+    top: 590,
   },
   categoryLevelButton: {
     width: "30%",

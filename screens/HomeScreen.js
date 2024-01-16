@@ -61,40 +61,45 @@ export default function HomeScreen({ navigation }) {
           onPress={() => navigation.navigate("Lesson")}
           style={[styles.sessionButton, { backgroundColor: "#ff00aa" }]}
         >
-          <Text style={styles.buttonText}>Lessons</Text>
+          <Text style={[styles.sessionNumber, { color: "#ff00aa" }]}>263</Text>
+          <Text style={styles.sessionText}>Lessons</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate("Review")}
           style={[styles.sessionButton, { backgroundColor: "#00aaff" }]}
         >
-          <Text style={styles.buttonText}>Reviews</Text>
+          <Text style={[styles.sessionNumber, { color: "#00aaff" }]}>420</Text>
+          <Text style={styles.sessionText}>Reviews</Text>
+        </TouchableOpacity>
+      </View>
+      <Text style={styles.categoryTitle}>Overview</Text>
+      <View style={styles.categoryContainer}>
+        <TouchableOpacity
+          style={[styles.categoryButton, { backgroundColor: "#00aaff" }]}
+          onPress={() => navigation.navigate("Radical")}
+        >
+          <Text style={styles.categoryJapaneseText}>部首</Text>
+          <Text style={styles.categoryEnglishText}>Radicals</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.categoryButton, { backgroundColor: "#ff00aa" }]}
+          onPress={() => navigation.navigate("Kanji")}
+        >
+          <Text style={styles.categoryJapaneseText}>漢字</Text>
+          <Text style={styles.categoryEnglishText}>Kanji</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.categoryButton, { backgroundColor: "#aa00ff" }]}
+          onPress={() => navigation.navigate("Vocabulary")}
+        >
+          <Text style={styles.categoryJapaneseText}>単語</Text>
+          <Text style={styles.categoryEnglishText}>Vocabulary</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>
         Welcome to the WaniKani Mobile App. It is still work in progress, but
         have a look around if you want to. 😉
       </Text>
-      <View style={styles.categoryContainer}>
-        <Text>Overview</Text>
-        <TouchableOpacity
-          style={[styles.categoryButton, { backgroundColor: "#00aaff" }]}
-          onPress={() => navigation.navigate("Radical")}
-        >
-          <Text style={styles.buttonText}>Radicals</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.categoryButton, { backgroundColor: "#ff00aa" }]}
-          onPress={() => navigation.navigate("Kanji")}
-        >
-          <Text style={styles.buttonText}>Kanji</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.categoryButton, { backgroundColor: "#aa00ff" }]}
-          onPress={() => navigation.navigate("Vocabulary")}
-        >
-          <Text style={styles.buttonText}>Vocabulary</Text>
-        </TouchableOpacity>
-      </View>
       <TouchableOpacity
         style={styles.settingsButton}
         onPress={() => navigation.navigate("Settings")}
@@ -133,37 +138,15 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "space-evenly",
-    gap: 40,
+    gap: 15,
     padding: 30,
     paddingTop: 10,
   },
   sessionButton: {
     borderRadius: 30,
     border: "none",
-    width: "50%",
-    height: 80,
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 30,
-    textAlign: "center",
-    paddingTop: 18,
-  },
-  categoryContainer: {
-    display: "flex",
-    flexDirection: "column",
-    gap: 10,
-    alignItems: "center",
-  },
-  categoryButton: {
-    borderRadius: 30,
     width: 350,
     height: 80,
     elevation: 3,
@@ -171,6 +154,69 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 1,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 10,
+    paddingRight: 30,
+  },
+  sessionNumber: {
+    backgroundColor: "#fff",
+    fontSize: 30,
+    padding: 6,
+    borderRadius: 15,
+    overflow: "hidden",
+  },
+  sessionText: {
+    color: "#fff",
+    fontSize: 30,
+    textAlign: "center",
+  },
+  categoryTitle: {
+    position: "absolute",
+    top: 390,
+    left: 36,
+    zIndex: 10,
+    fontSize: 40,
+    fontWeight: "bold",
+  },
+  categoryContainer: {
+    display: "flex",
+    flexDirection: "row",
+    gap: 10,
+    padding: 10,
+    paddingTop: 80,
+    paddingBottom: 20,
+    alignItems: "center",
+    backgroundColor: "#d5d5d5",
+    margin: 30,
+    marginTop: 0,
+    borderRadius: 20,
+  },
+  categoryButton: {
+    borderRadius: 30,
+    height: 110,
+    width: 110,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  },
+  categoryJapaneseText: {
+    color: "#fff",
+    fontSize: 30,
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  categoryEnglishText: {
+    color: "#fff",
+    fontSize: 20,
+    textAlign: "center",
   },
   settingsButton: {
     position: "absolute",

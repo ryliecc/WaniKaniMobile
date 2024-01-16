@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LevelButtons from "../components/LevelButtons";
 import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 
@@ -17,6 +17,36 @@ export default function RadicalScreen({ route, navigation }) {
   const [token, setToken] = useMMKVStorage("api_token", storage, "");
   const { levelCategory, startLevel } = route.params;
   const [activeLevel, setActiveLevel] = useState(startLevel);
+  const [isLoading, setIsLoading] = useState(false);
+  const [radicalData, setRadicalData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      const apiEndpointPath = "subjects?types=radical&levels=" + activeLevel;
+      const requestHeaders = new Headers({
+        Authorization: "Bearer " + token,
+      });
+      const apiEndpoint = new Request(
+        "https://api.wanikani.com/v2/" + apiEndpointPath,
+        {
+          method: "GET",
+          headers: requestHeaders,
+        }
+      );
+
+      try {
+        const response = await fetch(apiEndpoint);
+        const responseBody = await response.json();
+        console.log(response.status);
+        setRadicalData(responseBody.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [activeLevel, token]);
 
   return (
     <ScrollView>
@@ -27,21 +57,23 @@ export default function RadicalScreen({ route, navigation }) {
         setActiveLevel={setActiveLevel}
       />
       <View style={styles.radicalContainer}>
-        <TouchableOpacity style={styles.radicalBadge}>
-          <Text style={styles.radicalText}>A</Text>
-          <Text style={styles.nameText}>something</Text>
-        </TouchableOpacity>
+        {!isLoading &&
+          radicalData &&
+          radicalData.map((radical) => {
+            return (
+              <TouchableOpacity style={styles.radicalBadge} key={radical.id}>
+                <Text style={styles.radicalText}>
+                  {radical.data.characters}
+                </Text>
+                <Text style={styles.nameText}>
+                  {radical.data.meanings[0].meaning}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
       </View>
       <View style={styles.container}>
-        <Text style={styles.text}>
-          Stay tuned! Soon you will be able to see all the radicals here.
-        </Text>
-        <Text>
-          You clicked on {levelCategory}, so the first level that would show up
-          is Level {startLevel}.
-        </Text>
         <Button title="Go back" onPress={() => navigation.goBack()} />
-        <StatusBar style="auto" />
       </View>
     </ScrollView>
   );
@@ -53,11 +85,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-  },
-  text: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
+    paddingBottom: 80,
+    paddingTop: 20,
   },
   radicalContainer: {
     display: "flex",
@@ -65,6 +94,8 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     backgroundColor: "#fff",
     padding: 10,
+    gap: 8,
+    justifyContent: "center",
   },
   radicalBadge: {
     backgroundColor: "#00aaff",

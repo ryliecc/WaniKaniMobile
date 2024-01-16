@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 import { useState, useEffect } from "react";
 import SettingsIcon from "../constants/SettingsIcon";
@@ -94,6 +94,50 @@ export default function HomeScreen({ navigation }) {
         >
           <Text style={styles.categoryJapaneseText}>単語</Text>
           <Text style={styles.categoryEnglishText}>Vocabulary</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.categoryLevelContainer}>
+        <TouchableOpacity
+          style={styles.categoryLevelButton}
+          onPress={() => navigation.navigate("Radicals")}
+        >
+          <Text style={styles.categoryLevelJapaneseText}>快</Text>
+          <Text style={styles.categoryLevelEnglishText}>Pleasant</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryLevelButton}
+          onPress={() => navigation.navigate("Radicals")}
+        >
+          <Text style={styles.categoryLevelJapaneseText}>苦</Text>
+          <Text style={styles.categoryLevelEnglishText}>Painful</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryLevelButton}
+          onPress={() => navigation.navigate("Radicals")}
+        >
+          <Text style={styles.categoryLevelJapaneseText}>死</Text>
+          <Text style={styles.categoryLevelEnglishText}>Death</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryLevelButton}
+          onPress={() => navigation.navigate("Radicals")}
+        >
+          <Text style={styles.categoryLevelJapaneseText}>地獄</Text>
+          <Text style={styles.categoryLevelEnglishText}>Hell</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryLevelButton}
+          onPress={() => navigation.navigate("Radicals")}
+        >
+          <Text style={styles.categoryLevelJapaneseText}>天国</Text>
+          <Text style={styles.categoryLevelEnglishText}>Paradise</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.categoryLevelButton}
+          onPress={() => navigation.navigate("Radicals")}
+        >
+          <Text style={styles.categoryLevelJapaneseText}>現実</Text>
+          <Text style={styles.categoryLevelEnglishText}>Reality</Text>
         </TouchableOpacity>
       </View>
       <Text style={styles.text}>
@@ -217,6 +261,39 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 20,
     textAlign: "center",
+  },
+  categoryLevelContainer: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 10,
+    width: 340,
+    padding: 10,
+    alignItems: "center",
+    backgroundColor: "#00aaff",
+    justifyContent: "space-evenly",
+    borderRadius: 20,
+  },
+  categoryLevelButton: {
+    width: "30%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    padding: 5,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+  },
+  categoryLevelEnglishText: {
+    fontSize: 18,
+  },
+  categoryLevelJapaneseText: {
+    fontSize: 22,
   },
   settingsButton: {
     position: "absolute",

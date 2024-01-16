@@ -238,11 +238,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#aa00ff",
     padding: 5,
     borderRadius: 8,
-    elevation: 3,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1,
     width: 62,
     height: 62,
   },
@@ -251,5 +246,6 @@ const styles = StyleSheet.create({
     fontSize: 34,
     textAlign: "center",
     paddingTop: 5,
+    fontWeight: "bold",
   },
 });

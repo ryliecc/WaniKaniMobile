@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
 import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 import { useState, useEffect } from "react";
+import SettingsIcon from "../constants/SettingsIcon";
 
 const storage = new MMKVLoader().initialize();
 
@@ -52,11 +53,7 @@ export default function HomeScreen({ navigation }) {
       {isLoading && <Text style={styles.loading}>Trying to fetch data...</Text>}
       <Text style={styles.text}>
         {isTokenValid
-          ? "Hello " +
-            userData?.username +
-            "! You're currently on level " +
-            userData?.level +
-            "."
+          ? "Hello " + userData?.username + "!"
           : "No valid API token!"}
       </Text>
       <View style={styles.buttonContainer}>
@@ -78,6 +75,7 @@ export default function HomeScreen({ navigation }) {
         have a look around if you want to. 😉
       </Text>
       <View style={styles.categoryContainer}>
+        <Text>Overview</Text>
         <TouchableOpacity
           style={[styles.categoryButton, { backgroundColor: "#00aaff" }]}
           onPress={() => navigation.navigate("Radical")}
@@ -97,10 +95,15 @@ export default function HomeScreen({ navigation }) {
           <Text style={styles.buttonText}>Vocabulary</Text>
         </TouchableOpacity>
       </View>
-      <Button
-        title="Go to Settings"
+      <TouchableOpacity
+        style={styles.settingsButton}
         onPress={() => navigation.navigate("Settings")}
-      />
+      >
+        <SettingsIcon width={50} height={50} />
+      </TouchableOpacity>
+      <View style={styles.levelBadge}>
+        <Text style={styles.levelText}>{userData?.level}</Text>
+      </View>
     </View>
   );
 }
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "flex-start",
-    paddingTop: 70,
+    paddingTop: 120,
   },
   text: {
     fontSize: 20,
@@ -141,6 +144,11 @@ const styles = StyleSheet.create({
     border: "none",
     width: "50%",
     height: 80,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
   },
   buttonText: {
     color: "#fff",
@@ -158,5 +166,44 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 350,
     height: 80,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+  },
+  settingsButton: {
+    position: "absolute",
+    top: 60,
+    right: 8,
+    backgroundColor: "#d5d5d5",
+    padding: 5,
+    borderRadius: 8,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+  },
+  levelBadge: {
+    position: "absolute",
+    top: 60,
+    left: 8,
+    backgroundColor: "#aa00ff",
+    padding: 5,
+    borderRadius: 8,
+    elevation: 3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    width: 62,
+    height: 62,
+  },
+  levelText: {
+    color: "#fff",
+    fontSize: 34,
+    textAlign: "center",
+    paddingTop: 5,
   },
 });

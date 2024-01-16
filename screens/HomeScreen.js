@@ -132,42 +132,72 @@ export default function HomeScreen({ navigation }) {
       >
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate(activeCategory)}
+          onPress={() =>
+            navigation.navigate(activeCategory, {
+              levelCategory: "Pleasant",
+              startLevel: 1,
+            })
+          }
         >
           <Text style={styles.categoryLevelJapaneseText}>快</Text>
           <Text style={styles.categoryLevelEnglishText}>Pleasant</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate(activeCategory)}
+          onPress={() =>
+            navigation.navigate(activeCategory, {
+              levelCategory: "Painful",
+              startLevel: 11,
+            })
+          }
         >
           <Text style={styles.categoryLevelJapaneseText}>苦</Text>
           <Text style={styles.categoryLevelEnglishText}>Painful</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate(activeCategory)}
+          onPress={() =>
+            navigation.navigate(activeCategory, {
+              levelCategory: "Death",
+              startLevel: 21,
+            })
+          }
         >
           <Text style={styles.categoryLevelJapaneseText}>死</Text>
           <Text style={styles.categoryLevelEnglishText}>Death</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate(activeCategory)}
+          onPress={() =>
+            navigation.navigate(activeCategory, {
+              levelCategory: "Hell",
+              startLevel: 31,
+            })
+          }
         >
           <Text style={styles.categoryLevelJapaneseText}>地獄</Text>
           <Text style={styles.categoryLevelEnglishText}>Hell</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate(activeCategory)}
+          onPress={() =>
+            navigation.navigate(activeCategory, {
+              levelCategory: "Paradise",
+              startLevel: 41,
+            })
+          }
         >
           <Text style={styles.categoryLevelJapaneseText}>天国</Text>
           <Text style={styles.categoryLevelEnglishText}>Paradise</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.categoryLevelButton}
-          onPress={() => navigation.navigate(activeCategory)}
+          onPress={() =>
+            navigation.navigate(activeCategory, {
+              levelCategory: "Reality",
+              startLevel: 51,
+            })
+          }
         >
           <Text style={styles.categoryLevelJapaneseText}>現実</Text>
           <Text style={styles.categoryLevelEnglishText}>Reality</Text>

@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   View,
@@ -61,7 +60,15 @@ export default function RadicalScreen({ route, navigation }) {
           radicalData &&
           radicalData.map((radical) => {
             return (
-              <TouchableOpacity style={styles.radicalBadge} key={radical.id}>
+              <TouchableOpacity
+                style={styles.radicalBadge}
+                key={radical.id}
+                onPress={() =>
+                  navigation.navigate("Radical Details", {
+                    radicalId: radical.id,
+                  })
+                }
+              >
                 <Text style={styles.radicalText}>
                   {radical.data.characters}
                 </Text>

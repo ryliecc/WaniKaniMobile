@@ -2,7 +2,6 @@ import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   View,
-  Button,
   Text,
   ScrollView,
   TouchableOpacity,
@@ -14,7 +13,7 @@ import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 const storage = new MMKVLoader().initialize();
 
 export default function VocabularyScreen({ route, navigation }) {
-  const { levelCategory, startLevel } = route.params;
+  const { startLevel } = route.params;
   const [activeLevel, setActiveLevel] = useState(startLevel);
   const [token, setToken] = useMMKVStorage("api_token", storage, "");
   const [isLoading, setIsLoading] = useState(false);
@@ -50,7 +49,7 @@ export default function VocabularyScreen({ route, navigation }) {
   }, [activeLevel, token]);
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: "#fff" }}>
       <LevelButtons
         categoryColor="#aa00ff"
         startLevel={startLevel}
@@ -86,38 +85,17 @@ export default function VocabularyScreen({ route, navigation }) {
             );
           })}
       </View>
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          Stay tuned! Soon you will be able to see all vocabulary here.
-        </Text>
-        <Text>
-          You clicked on {levelCategory}, so the first level that would show up
-          is Level {startLevel}.
-        </Text>
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-        <StatusBar style="auto" />
-      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-  },
   vocabularyContainer: {
     display: "flex",
     flexDirection: "column",
     flexWrap: "nowrap",
     padding: 6,
+    paddingBottom: 24,
     justifyContent: "center",
     backgroundColor: "#fff",
     gap: 10,

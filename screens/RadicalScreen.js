@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   View,
-  Button,
   Text,
   ScrollView,
   TouchableOpacity,
@@ -14,7 +13,7 @@ const storage = new MMKVLoader().initialize();
 
 export default function RadicalScreen({ route, navigation }) {
   const [token, setToken] = useMMKVStorage("api_token", storage, "");
-  const { levelCategory, startLevel } = route.params;
+  const { startLevel } = route.params;
   const [activeLevel, setActiveLevel] = useState(startLevel);
   const [isLoading, setIsLoading] = useState(false);
   const [radicalData, setRadicalData] = useState([]);
@@ -48,7 +47,7 @@ export default function RadicalScreen({ route, navigation }) {
   }, [activeLevel, token]);
 
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: "#fff" }}>
       <LevelButtons
         categoryColor="#00aaff"
         startLevel={startLevel}
@@ -79,28 +78,18 @@ export default function RadicalScreen({ route, navigation }) {
             );
           })}
       </View>
-      <View style={styles.container}>
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingBottom: 80,
-    paddingTop: 20,
-  },
   radicalContainer: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     backgroundColor: "#fff",
     padding: 10,
+    paddingBottom: 28,
     gap: 8,
     justifyContent: "center",
   },

@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   View,
-  Button,
   Text,
   ScrollView,
   TouchableOpacity,
@@ -13,7 +12,7 @@ import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 const storage = new MMKVLoader().initialize();
 
 export default function KanjiScreen({ route, navigation }) {
-  const { levelCategory, startLevel } = route.params;
+  const { startLevel } = route.params;
   const [activeLevel, setActiveLevel] = useState(startLevel);
   const [isLoading, setIsLoading] = useState(false);
   const [kanjiData, setKanjiData] = useState([]);
@@ -47,7 +46,7 @@ export default function KanjiScreen({ route, navigation }) {
     fetchData();
   }, [activeLevel, token]);
   return (
-    <ScrollView>
+    <ScrollView style={{ backgroundColor: "#fff" }}>
       <LevelButtons
         categoryColor="#ff00aa"
         startLevel={startLevel}
@@ -81,37 +80,17 @@ export default function KanjiScreen({ route, navigation }) {
             );
           })}
       </View>
-      <View style={styles.container}>
-        <Text style={styles.text}>
-          Stay tuned! Soon you will be able to see all the kanji here.
-        </Text>
-        <Text>
-          You clicked on {levelCategory}, so the first level that would show up
-          is Level {startLevel}.
-        </Text>
-        <Button title="Go back" onPress={() => navigation.goBack()} />
-      </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  text: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-  },
   kanjiContainer: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
     padding: 10,
+    paddingBottom: 28,
     justifyContent: "center",
     backgroundColor: "#fff",
     gap: 14,

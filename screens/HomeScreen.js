@@ -134,7 +134,6 @@ export default function HomeScreen({ navigation }) {
           style={styles.categoryLevelButton}
           onPress={() =>
             navigation.navigate(activeCategory, {
-              levelCategory: "Pleasant",
               startLevel: 1,
             })
           }
@@ -146,7 +145,6 @@ export default function HomeScreen({ navigation }) {
           style={styles.categoryLevelButton}
           onPress={() =>
             navigation.navigate(activeCategory, {
-              levelCategory: "Painful",
               startLevel: 11,
             })
           }
@@ -158,7 +156,6 @@ export default function HomeScreen({ navigation }) {
           style={styles.categoryLevelButton}
           onPress={() =>
             navigation.navigate(activeCategory, {
-              levelCategory: "Death",
               startLevel: 21,
             })
           }
@@ -170,7 +167,6 @@ export default function HomeScreen({ navigation }) {
           style={styles.categoryLevelButton}
           onPress={() =>
             navigation.navigate(activeCategory, {
-              levelCategory: "Hell",
               startLevel: 31,
             })
           }
@@ -182,7 +178,6 @@ export default function HomeScreen({ navigation }) {
           style={styles.categoryLevelButton}
           onPress={() =>
             navigation.navigate(activeCategory, {
-              levelCategory: "Paradise",
               startLevel: 41,
             })
           }
@@ -194,7 +189,6 @@ export default function HomeScreen({ navigation }) {
           style={styles.categoryLevelButton}
           onPress={() =>
             navigation.navigate(activeCategory, {
-              levelCategory: "Reality",
               startLevel: 51,
             })
           }

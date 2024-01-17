@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { useMMKVStorage, MMKVLoader } from "react-native-mmkv-storage";
 import { useState, useEffect } from "react";
 import SettingsIcon from "../constants/SettingsIcon";
@@ -71,146 +77,154 @@ export default function HomeScreen({ navigation }) {
   }
 
   return (
-    <View style={styles.container}>
-      {isLoading && <Text style={styles.loading}>Trying to fetch data...</Text>}
-      <Text style={styles.text}>
-        {isTokenValid
-          ? "Hello " + userData?.username + "!"
-          : "No valid API token!"}
-      </Text>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Lesson")}
-          style={[styles.sessionButton, { backgroundColor: "#ff00aa" }]}
+    <ScrollView style={{ backgroundColor: "#fff" }}>
+      <View style={styles.container}>
+        {isLoading && (
+          <Text style={styles.loading}>Trying to fetch data...</Text>
+        )}
+        <Text style={styles.text}>
+          {isTokenValid
+            ? "Hello " + userData?.username + "!"
+            : "No valid API token!"}
+        </Text>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Lesson")}
+            style={[styles.sessionButton, { backgroundColor: "#ff00aa" }]}
+          >
+            <Text style={[styles.sessionNumber, { color: "#ff00aa" }]}>
+              263
+            </Text>
+            <Text style={styles.sessionText}>Lessons</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("Review")}
+            style={[styles.sessionButton, { backgroundColor: "#00aaff" }]}
+          >
+            <Text style={[styles.sessionNumber, { color: "#00aaff" }]}>
+              420
+            </Text>
+            <Text style={styles.sessionText}>Reviews</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.categoryTitle}>Overview</Text>
+        <View
+          style={[
+            styles.categoryContainer,
+            { paddingBottom: isCategoryLevelOpen ? 210 : 20 },
+          ]}
         >
-          <Text style={[styles.sessionNumber, { color: "#ff00aa" }]}>263</Text>
-          <Text style={styles.sessionText}>Lessons</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Review")}
-          style={[styles.sessionButton, { backgroundColor: "#00aaff" }]}
+          <TouchableOpacity
+            style={[styles.categoryButton, { backgroundColor: "#00aaff" }]}
+            onPress={() => toggleCategoryLevelContainer("Radical")}
+          >
+            <Text style={styles.categoryJapaneseText}>部首</Text>
+            <Text style={styles.categoryEnglishText}>Radicals</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.categoryButton, { backgroundColor: "#ff00aa" }]}
+            onPress={() => toggleCategoryLevelContainer("Kanji")}
+          >
+            <Text style={styles.categoryJapaneseText}>漢字</Text>
+            <Text style={styles.categoryEnglishText}>Kanji</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.categoryButton, { backgroundColor: "#aa00ff" }]}
+            onPress={() => toggleCategoryLevelContainer("Vocabulary")}
+          >
+            <Text style={styles.categoryJapaneseText}>単語</Text>
+            <Text style={styles.categoryEnglishText}>Vocabulary</Text>
+          </TouchableOpacity>
+        </View>
+        <View
+          style={[
+            styles.categoryLevelContainer,
+            { display: isCategoryLevelOpen ? "flex" : "none" },
+            { backgroundColor: categoryBackgroundColor },
+          ]}
         >
-          <Text style={[styles.sessionNumber, { color: "#00aaff" }]}>420</Text>
-          <Text style={styles.sessionText}>Reviews</Text>
+          <TouchableOpacity
+            style={styles.categoryLevelButton}
+            onPress={() =>
+              navigation.navigate(activeCategory, {
+                startLevel: 1,
+              })
+            }
+          >
+            <Text style={styles.categoryLevelJapaneseText}>快</Text>
+            <Text style={styles.categoryLevelEnglishText}>Pleasant</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.categoryLevelButton}
+            onPress={() =>
+              navigation.navigate(activeCategory, {
+                startLevel: 11,
+              })
+            }
+          >
+            <Text style={styles.categoryLevelJapaneseText}>苦</Text>
+            <Text style={styles.categoryLevelEnglishText}>Painful</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.categoryLevelButton}
+            onPress={() =>
+              navigation.navigate(activeCategory, {
+                startLevel: 21,
+              })
+            }
+          >
+            <Text style={styles.categoryLevelJapaneseText}>死</Text>
+            <Text style={styles.categoryLevelEnglishText}>Death</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.categoryLevelButton}
+            onPress={() =>
+              navigation.navigate(activeCategory, {
+                startLevel: 31,
+              })
+            }
+          >
+            <Text style={styles.categoryLevelJapaneseText}>地獄</Text>
+            <Text style={styles.categoryLevelEnglishText}>Hell</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.categoryLevelButton}
+            onPress={() =>
+              navigation.navigate(activeCategory, {
+                startLevel: 41,
+              })
+            }
+          >
+            <Text style={styles.categoryLevelJapaneseText}>天国</Text>
+            <Text style={styles.categoryLevelEnglishText}>Paradise</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.categoryLevelButton}
+            onPress={() =>
+              navigation.navigate(activeCategory, {
+                startLevel: 51,
+              })
+            }
+          >
+            <Text style={styles.categoryLevelJapaneseText}>現実</Text>
+            <Text style={styles.categoryLevelEnglishText}>Reality</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.text}>
+          Welcome to the WaniKani Mobile App. It is still work in progress, but
+          have a look around if you want to. 😉
+        </Text>
+        <TouchableOpacity
+          style={styles.settingsButton}
+          onPress={() => navigation.navigate("Settings")}
+        >
+          <SettingsIcon width={50} height={50} />
         </TouchableOpacity>
+        <View style={styles.levelBadge}>
+          <Text style={styles.levelText}>{userData?.level}</Text>
+        </View>
       </View>
-      <Text style={styles.categoryTitle}>Overview</Text>
-      <View
-        style={[
-          styles.categoryContainer,
-          { paddingBottom: isCategoryLevelOpen ? 210 : 20 },
-        ]}
-      >
-        <TouchableOpacity
-          style={[styles.categoryButton, { backgroundColor: "#00aaff" }]}
-          onPress={() => toggleCategoryLevelContainer("Radical")}
-        >
-          <Text style={styles.categoryJapaneseText}>部首</Text>
-          <Text style={styles.categoryEnglishText}>Radicals</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.categoryButton, { backgroundColor: "#ff00aa" }]}
-          onPress={() => toggleCategoryLevelContainer("Kanji")}
-        >
-          <Text style={styles.categoryJapaneseText}>漢字</Text>
-          <Text style={styles.categoryEnglishText}>Kanji</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.categoryButton, { backgroundColor: "#aa00ff" }]}
-          onPress={() => toggleCategoryLevelContainer("Vocabulary")}
-        >
-          <Text style={styles.categoryJapaneseText}>単語</Text>
-          <Text style={styles.categoryEnglishText}>Vocabulary</Text>
-        </TouchableOpacity>
-      </View>
-      <View
-        style={[
-          styles.categoryLevelContainer,
-          { display: isCategoryLevelOpen ? "flex" : "none" },
-          { backgroundColor: categoryBackgroundColor },
-        ]}
-      >
-        <TouchableOpacity
-          style={styles.categoryLevelButton}
-          onPress={() =>
-            navigation.navigate(activeCategory, {
-              startLevel: 1,
-            })
-          }
-        >
-          <Text style={styles.categoryLevelJapaneseText}>快</Text>
-          <Text style={styles.categoryLevelEnglishText}>Pleasant</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.categoryLevelButton}
-          onPress={() =>
-            navigation.navigate(activeCategory, {
-              startLevel: 11,
-            })
-          }
-        >
-          <Text style={styles.categoryLevelJapaneseText}>苦</Text>
-          <Text style={styles.categoryLevelEnglishText}>Painful</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.categoryLevelButton}
-          onPress={() =>
-            navigation.navigate(activeCategory, {
-              startLevel: 21,
-            })
-          }
-        >
-          <Text style={styles.categoryLevelJapaneseText}>死</Text>
-          <Text style={styles.categoryLevelEnglishText}>Death</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.categoryLevelButton}
-          onPress={() =>
-            navigation.navigate(activeCategory, {
-              startLevel: 31,
-            })
-          }
-        >
-          <Text style={styles.categoryLevelJapaneseText}>地獄</Text>
-          <Text style={styles.categoryLevelEnglishText}>Hell</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.categoryLevelButton}
-          onPress={() =>
-            navigation.navigate(activeCategory, {
-              startLevel: 41,
-            })
-          }
-        >
-          <Text style={styles.categoryLevelJapaneseText}>天国</Text>
-          <Text style={styles.categoryLevelEnglishText}>Paradise</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.categoryLevelButton}
-          onPress={() =>
-            navigation.navigate(activeCategory, {
-              startLevel: 51,
-            })
-          }
-        >
-          <Text style={styles.categoryLevelJapaneseText}>現実</Text>
-          <Text style={styles.categoryLevelEnglishText}>Reality</Text>
-        </TouchableOpacity>
-      </View>
-      <Text style={styles.text}>
-        Welcome to the WaniKani Mobile App. It is still work in progress, but
-        have a look around if you want to. 😉
-      </Text>
-      <TouchableOpacity
-        style={styles.settingsButton}
-        onPress={() => navigation.navigate("Settings")}
-      >
-        <SettingsIcon width={50} height={50} />
-      </TouchableOpacity>
-      <View style={styles.levelBadge}>
-        <Text style={styles.levelText}>{userData?.level}</Text>
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 

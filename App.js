@@ -9,6 +9,7 @@ import RadicalScreen from "./screens/RadicalScreen";
 import KanjiScreen from "./screens/KanjiScreen";
 import VocabularyScreen from "./screens/VocabularyScreen";
 import RadicalDetailsScreen from "./screens/RadicalDetailsScreen";
+import KanjiDetailsScreen from "./screens/KanjiDetailsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,11 @@ export default function App() {
         <Stack.Screen
           name="Kanji"
           component={KanjiScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Kanji Details"
+          component={KanjiDetailsScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

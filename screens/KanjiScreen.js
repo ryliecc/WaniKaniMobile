@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   kanjiReading: {
-    fontSize: 20,
+    fontSize: 16,
     color: "#fff",
     textAlign: "center",
   },

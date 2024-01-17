@@ -8,7 +8,7 @@ export default function RadicalDetailsScreen({ route, navigation }) {
   const [token, setToken] = useMMKVStorage("api_token", storage, "");
   const { radicalId } = route.params;
   const [isLoading, setIsLoading] = useState(false);
-  const [radicalData, setRadicalData] = useState([]);
+  const [radicalData, setRadicalData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
